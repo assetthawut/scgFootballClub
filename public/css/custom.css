@@ -1,0 +1,22 @@
+.active {
+    color: black !important;
+}
+
+.nav-link.active {
+    color: black !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+.active>span {
+    color: black !important;
+}
+
+.text-gray {
+    color: darkgrey;
+}
+
+.league_standing{
+    overflow: scroll;   
+}
