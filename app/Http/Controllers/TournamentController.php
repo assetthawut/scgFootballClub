@@ -55,9 +55,44 @@ class TournamentController extends Controller
                                          ->where('tournament_id',$id)
                                          ->orderBy('start_at', 'asc')
                                          ->get();
-        // print_r($fixtures);
-        // exit();
-        return  view('tournament.index',['fixtures' => $fixtures]);
+        $teams = DB::table('teams')->get();
+
+        $minileague['A'] = DB::table('mini_league_standing')
+                                ->join('teams','mini_league_standing.team_id','teams.id')
+                                ->select('mini_league_standing.*','teams.name')
+                                ->where('group_name','A')
+                                ->orderBy('mini_league_standing.point', 'desc')
+                                ->get();
+        $minileague['B'] = DB::table('mini_league_standing')
+                                ->join('teams','mini_league_standing.team_id','teams.id')
+                                ->select('mini_league_standing.*','teams.name')
+                                ->where('group_name','B')
+                                ->orderBy('mini_league_standing.point', 'desc')
+                                ->get();                                
+        $minileague['C'] = DB::table('mini_league_standing')
+                                ->join('teams','mini_league_standing.team_id','teams.id')
+                                ->select('mini_league_standing.*','teams.name')
+                                ->where('group_name','C')
+                                ->orderBy('mini_league_standing.point', 'desc')
+                                ->get();                  
+        $minileague['D'] = DB::table('mini_league_standing')
+                                ->join('teams','mini_league_standing.team_id','teams.id')
+                                ->select('mini_league_standing.*','teams.name')
+                                ->where('group_name','D')
+                                ->orderBy('mini_league_standing.point', 'desc')
+                                ->get();                                                                         
+        // stat  
+        /*
+            select COUNT(*) as total,players.firstname FROM goals 
+            LEFT JOIN players on players.id = goals.player_id
+            GROUP by player_id
+            ORDER By total desc        
+        */   
+        $stat   = DB::select("select COUNT(*) as total, firstname,lastname FROM goals 
+        LEFT JOIN players on players.id = goals.player_id
+        GROUP by goals.player_id,firstname,lastname
+        ORDER By total desc");
+        return  view('tournament.index',['fixtures' => $fixtures,'teams' => $teams,'minileague' => $minileague,'stat' => $stat]);
     }
 
     /**

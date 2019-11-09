@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/club', 'ClubController');
 Route::resource('/booking', 'BookingController');
+Route::post('/fixture/special', 'FixtureController@speacialUpdate');
 Route::resource('/fixture', 'FixtureController');
 Route::resource('/league', 'LeagueController');
 Route::resource('/player', 'PlayerController');

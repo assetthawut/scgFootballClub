@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PlayerController extends Controller
 {
@@ -35,6 +37,44 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
         //
+        // print_r($request->input());
+        $clubId = $request->input('clubId');
+        $firstnameLists = $request->input('firstname');
+        $lastnameLists = $request->input('lastname');
+        $tournamentId = $request->input('tournamentId');
+/*        
+        $lastId  = DB::table('players')->insertGetId(
+            [
+                'firstname' => 'dd',
+                'lastname' => 'dd',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        );
+        print_r($lastId);
+*/       
+        // print_r($firstnameLists[1]);
+        foreach( $firstnameLists as $key => $value) {
+            if(!empty($firstnameLists[$key]) || !empty($lastnameLists[$key])){
+                $lastId  = DB::table('players')->insertGetId(
+                    [
+                        'firstname' => $firstnameLists[$key],
+                        'lastname' => $lastnameLists[$key],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]
+                );
+                DB::table('player_in_club')->insert([
+                    'player_id' => $lastId,
+                    'team_id' => $clubId,
+                    'tournament_id' => $tournamentId,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()                    
+                ]);
+            }
+        }
+
+        return redirect('/tournament/1');
     }
 
     /**
