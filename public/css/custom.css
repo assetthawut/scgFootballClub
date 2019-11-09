@@ -32,3 +32,16 @@
 .bg-semi{
     background-color: cornsilk;    
 }
+
+
+.bg-thirdPlace .text-gray {
+    color: black !important;
+}
+
+.bg-final .text-gray {
+    color: black !important;
+}
+
+.bg-semi .text-gray {
+    color: black !important;
+}
