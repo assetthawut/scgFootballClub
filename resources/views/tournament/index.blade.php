@@ -52,7 +52,15 @@
                         @foreach ($fixtures as $fixture)
                             <div class="row mt-2">
                                 <div class="col-12">
-                                    <div class="card " data-toggle="collapse" href="#match{{$fixture->id}}">
+                                    @if ($fixture->id == '19')
+                                        <div class="card bg-final" data-toggle="collapse" href="#match{{$fixture->id}}">
+                                    @elseif($fixture->id == '18')
+                                        <div class="card bg-thirdPlace" data-toggle="collapse" href="#match{{$fixture->id}}">
+                                    @elseif($fixture->id == '16' || $fixture->id == '17')
+                                        <div class="card bg-semi" data-toggle="collapse" href="#match{{$fixture->id}}">
+                                    @else     
+                                        <div class="card" data-toggle="collapse" href="#match{{$fixture->id}}">
+                                    @endif
                                         <div class="card-body">
                                             <div class="row ">
                                                 <div class="col-4">

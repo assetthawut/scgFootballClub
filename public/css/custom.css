@@ -20,3 +20,15 @@
 .league_standing{
     overflow: scroll;   
 }
+
+.bg-final {
+    background-color: darkgoldenrod;
+}
+
+.bg-thirdPlace {
+    background-color: chocolate;
+}
+
+.bg-semi{
+    background-color: cornsilk;    
+}
