@@ -54,7 +54,7 @@
                                 <div class="col-12">
                                     <div class="card " data-toggle="collapse" href="#match{{$fixture->id}}">
                                         <div class="card-body">
-                                            <div class="row mb-2">
+                                            <div class="row ">
                                                 <div class="col-4">
                                                     <span class="font-weight-bold text-gray">09-11-2019</span>
                                                 </div>
@@ -67,6 +67,11 @@
                                                 </div>
                                                 <div class="col-4 text-right">
                                                     <span class="font-weight-bold text-gray"><?php echo getTime($fixture->start_at,$fixture->end_at);?></span>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <div class="col-12 text-right">
+                                                    <span class="text-gray font-weight-bold">สนาม {{$fixture->stadium_name}}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
